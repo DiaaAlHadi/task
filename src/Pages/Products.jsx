@@ -38,16 +38,7 @@ export default function Products() {
                 control.sortingDirection === "asc" ? a.title > b.title ? 1 : -1 : a.title > b.title ? -1 : 1)
         }))
     }
-    function handleChanges(newValue) {
-        setControl(old => ({ ...old, range: newValue }))
-        let InRangeProducts = [];
-        data.FilteredProducts.map(product => {
-            if (product.price > control.range[0] && product.price < control.range[1]) {
-                InRangeProducts.push(product);
-            }
-        })
-        setData(old => ({ ...old, FilteredProducts: InRangeProducts }))
-    }
+
 
     function GetAllCategories() {
         axios.get("https://fakestoreapi.com/products/categories")
@@ -131,10 +122,6 @@ export default function Products() {
                                 })}
                             </ul>
                         </div>
-                    </div>
-                    <div className="px-3">
-                        <span>Price Range</span>
-                        <Slider getAriaLabel={() => 'Price range'} valueLabelDisplay="auto" value={control.range} onChange={handleChanges} max={2000} min={0} />
                     </div>
                 </div>
                 <div className='col-12 col-md-8 col-lg-10 bg-light'>
